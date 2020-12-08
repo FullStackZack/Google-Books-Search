@@ -5,7 +5,7 @@ const db = require("../models");
 
 mongoose.connect(
     process.env.MONGODB_URI ||
-    "mongodb://localhost/googleboks"
+    "mongodb://localhost/googlebooks"
 );
 
 const bookSeed =
@@ -20,7 +20,7 @@ const bookSeed =
 
 db.Book
     .remove({})
-    .then(() => db.Book.collection.insertMany(bookSeed))
+    .then(() => db.Book.collection.insertOne(bookSeed))
     .then(data => {
         console.log(data.result.n + " records inserted!");
         process.exit(0);
