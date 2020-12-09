@@ -1,16 +1,19 @@
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-  saveBook: function (book) {
-    return axios.post("/api/books", book)
-  },
-  getBooks: function (search) {
-    return axios.get('https://www.googleapis.com/books/v1/volumes?q=' + search)
-  },
-  deleteBook: function (id) {
-    return axios.delete("/api/books/" + id)
-  },
-  getAllBooks: function () {
-    return axios.get("/api/books")
-  }
-}
+	getBook: function (query) {
+		return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+	},
+	// Deletes the book with the given id
+	deleteBook: function (id) {
+		return axios.delete("/api/books/" + id).then(result => result.data);
+	},
+	// Saves a book to the database
+	saveBook: function (bookData) {
+		return axios.post("/api/books", bookData).then(result => result.data);
+	},
+	// Get the saved a books from the database
+	savedBooks: function () {
+		return axios.get("/api/books").then(result => result.data);
+	}
+};

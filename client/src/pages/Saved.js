@@ -1,16 +1,26 @@
-import React from 'react';
-import Jumbotron from '../components/Jumbotron';
-import Navbar from '../components/Navbar/Navbar';
-import SavedBooks from "../components/saved"
+import React, { Component } from "react";
+import API from "../utils/API";
+import Results from "../components/Results";
 
-function Saved () {
-  return (
-    <div>
-        <Navbar />
-        <Jumbotron />
-        <SavedBooks />
-    </div>
-  )
+class Saved extends Component {
+	state = {
+		saveBooks: [],
+	}
+
+	componentDidMount() {
+		API.savedBooks()
+			.then(saveBooks => this.setState({ saveBooks: saveBooks }))
+			.catch(err => console.error(err));
+	}
+
+	render() {
+		return (
+			<div className="container">
+				<h2>Saved Books</h2>
+				<Results books={this.state.saveBooks} />
+			</div>
+		)
+	}
 }
 
 export default Saved;
