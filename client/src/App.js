@@ -1,24 +1,23 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Search from "./pages/Search";
-import Saved from "./pages/Saved";
+import React from "react";
 import "./App.css";
+import Searchpage from "./pages/Search";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Saved from "./pages/Saved";
 
-class App extends Component {
+function App() {
+  console.log('works');
 
-
-  render() {
-    return (
-      <Router>
-      <div>
+  return (
+    <Router>
+      <div className="App">
         <Switch>
-          <Route exact path="/" component={Search} />
-          <Route exact path="/saved" component={Saved} />
+          <Route exact path='/' component={Searchpage} />
+          <Route exact path='/saved' component={Saved} />
         </Switch>
       </div>
-      </Router>
-    );
-  }
+    </Router>
+  );
 }
+
 
 export default App;
